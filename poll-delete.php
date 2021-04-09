@@ -14,8 +14,7 @@ if (isset($_GET['id']))
 
     if (!$poll)
     {
-        die ('Poll does not exist with that ID.');
-    }
+       redirect('polls.php','Poll does not exist with that ID.', 'danger');    }
     if (isset($_GET['confirm']))
     {
         if ($_GET['confirm'] == 'yes') {
@@ -26,7 +25,7 @@ if (isset($_GET['id']))
             $stmt = $pdo->prepare('DELETE FROM poll_answers WHERE poll_id = ?');
             $stmt -> execute([$_GET['id']]);
             //output message
-            $msg = 'You have deleted the poll!';
+            redirect('polls.php','You have deleted the poll!', 'success');
         }
         else
         {
@@ -39,7 +38,7 @@ if (isset($_GET['id']))
 }
 else
 {
-    die ('No ID specified.');
+    redirect('polls.php','No specified ID.', 'danger');
 }
 
 
