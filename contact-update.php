@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
     $contact = $stmt->fetch(PDO::FETCH_ASSOC);
     
     if (!$contact) {
-        exit('Contact doesn\'t exist with that ID!');
+        redirect('polls.php','This contact does not exist', 'danger');
     }
     
     if (!empty($_POST)) {
@@ -25,11 +25,11 @@ if (isset($_GET['id'])) {
         $stmt = $pdo->prepare('UPDATE contacts SET id = ?, name = ?, 
             email = ?, phone = ?, title = ?, created = ? WHERE id = ?');
         $stmt->execute([$_GET['id'], $name, $email, $phone, $title, $created, $_GET['id']]);
-        $msg = 'Updated successfully!';
+        redirect('polls.php','You have successfully updated the contact!', 'success');
     }
 
 } else {
-    exit('No ID specified');
+    redirect('polls.php','No specified ID.', 'danger');
 }
 
 
