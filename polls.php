@@ -32,7 +32,10 @@ $polls = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <?php
 //if the URL has success or fail in it show message
-message();
+if(isset($_GET['type'])) {
+    $_GET['type'] == 'success' ? (success($_GET['message'])) :
+        (danger($_GET['message']));
+}
 ?>
 
 
