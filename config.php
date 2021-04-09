@@ -35,35 +35,39 @@ function pdo_connect_mysql() {
 
 
 
-function redirect($file, $msg, $color)
+function redirect($file, $msg, $type)
 {
-  if ($msg == 'right' || $msg == 'wrong') {
-    //make sure that answer is either right or wrong
-    header("Location: " . $file . "?answer=$msg");
-  } else {
-    echo 'there was an error.';
-  }
+
+    header("Location: " . $file . "?message=$msg" .
+      "&type=$type");
 }
 
-function message()
+function success($message)
 {
+  echo <<<EOT
+    <div class="notification is-success"
+    <h2 class="title is-2">
+  
+  EOT;
+  echo $message;
+  echo <<<EOT
+  </h2>
+</div>
+EOT;
+}
 
-
-  if (strpos($_SERVER['REQUEST_URI'], "right") == true) {
-?>
-    <div class="notification is-success">
-      <h2 class="title is-2">Success!</h2>
-    </div>
-  <?php
-  }
-
-  if (strpos($_SERVER['REQUEST_URI'], "wrong") == true) {
-  ?>
-    <div class="notification is-danger">
-      <h2 class="title is-2">There was an error.</h2>
-    </div>
-<?php
-  }
+function danger($message)
+{
+  echo <<<EOT
+    <div class="notification is-danger"
+    <h2 class="title is-2">
+  
+  EOT;
+  echo $message;
+  echo <<<EOT
+  </h2>
+</div>
+EOT;
 }
 
 
