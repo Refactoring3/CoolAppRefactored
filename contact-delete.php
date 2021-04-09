@@ -14,7 +14,8 @@ if (isset($_GET['id']))
 
     if (!$contact)
     {
-        die ('Contact does not exist with that ID.');
+         redirect('polls.php','Contact does not exist with that ID.', 'danger');
+
     }
     if (isset($_GET['confirm']))
     {
@@ -23,8 +24,7 @@ if (isset($_GET['id']))
             $stmt = $pdo->prepare('DELETE FROM contacts WHERE id = ?');
             $stmt -> execute([$_GET['id']]);
             //output message
-            $msg = 'You have deleted the contact!';
-        }
+          redirect('polls.php','You have deleted the contact!', 'success');        }
         else
         {
             //User clicked the no button, redirect them back to the home page
@@ -36,7 +36,7 @@ if (isset($_GET['id']))
 }
 else
 {
-    die ('No ID specified.');
+    redirect('polls.php','No specified ID.', 'danger');
 }
 
 
