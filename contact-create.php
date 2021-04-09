@@ -20,8 +20,8 @@ if(!empty($_POST)) {
     $stmt->execute([$name, $email, $phone, $title, date('Y-m-d H:i:s')]);
 
     
+    redirect('polls.php','Contact created successfully!', 'success');
 
-    $msg = "Contact created successfully!";
 }
 
 ?>
