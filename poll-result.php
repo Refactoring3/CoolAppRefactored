@@ -30,10 +30,10 @@ if (isset($_GET['id'])) {
             $total_votes += $poll_answer['votes'];
         }
     }else {
-        die ('The poll with that id does not exist.');
+        redirect('polls.php','the poll with that id does not exist.', 'danger');
     }
 } else {
-    die('No poll id specified.');
+    redirect('polls.php','No specified ID.', 'danger');
 }
 
 ?>
